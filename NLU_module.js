@@ -1,7 +1,3 @@
-//module used for credentials
-require('dotenv').config()
-console.log(process.env.NLU_USERNAME);
-
 //setting up NLU 
 var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
 var natural_language_understanding = new NaturalLanguageUnderstandingV1({
