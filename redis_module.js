@@ -3,40 +3,55 @@ var redis = require('redis');
 var client = redis.createClient();
 
 module.exports = {
-	
+
+  //stores tweet in a list
   storeTweet: function(id, tweet) {
-  	var listTitle = JSON.stringify(id+' tweets');
-    client.rpush(listTitle,JSON.stringify(tweet.text));
+    var listTitle = id + ' tweets';
+    client.rpush(listTitle,JSON.stringify(tweet));
   },
 
+
+  //stores tweet's text in a list, takes a list of tweets
   storeTweets: function(id,tweets){
-  	var listTitle = JSON.stringify(id+' tweets');
-  	for(var i = 0; i < tweets.length; i++)
-  		client.rpush(listTitle,JSON.stringify(tweets[i].text));
+    for(var i = 0; i < tweets.length; i++)
+      this.storeTweet(id,tweets[i].text);
+  },
+
+  //stores given parameters of tweets
+  storeTweetsDetailed: function(id, tweets, parameters) {
+    for(var i = 0; i < tweets.length; i++){
+      var currentTweet = tweets[i];
+      for(property in currentTweet){
+        if ( parameters.indexOf( property.toString() ) == -1 )
+          delete currentTweet[property];  
+      }
+      this.storeTweet(id, currentTweet);
+  }
   },
        
+  //retrieve tweets for a given ID in a list
   retrieveTweets: function(id) {
-  	var listTitle = JSON.stringify(id+' tweets');
+    var listTitle = id + ' tweets';
     return client.lrange(listTitle,0,-1);
   },
 
   storeAnalysis: function(id, analysis) {
-  	var listTitle = JSON.stringify(id + ' analysis');
-	client.rpush(listTitle,JSON.stringify(analysis));  
+    var listTitle = id + ' analysis';
+    client.rpush(listTitle,JSON.stringify(analysis));  
   },
 
   storeMultipleAnalysis: function(id, analysis){
-  	 var listTitle = JSON.stringify(id + ' analysis');
-  	 for(var i = 0; i < analysis.length; i++)
-  		client.rpush(listTitle,JSON.stringify(analysis[i]));
+     var listTitle = id + ' analysis';
+     for(var i = 0; i < analysis.length; i++)
+      this.storeAnalysis(id, analysis[i]);
   },
        
   retrieveAnalysis: function(id) {
-  	var listTitle = JSON.stringify(id + ' analysis');
-	return client.lrange(listTitle,0,-1);
+    var listTitle = id + ' analysis';
+    return client.lrange(listTitle,0,-1);
   },
 
   quit: function(){
-  	client.quit();
+    client.quit();
   }
 };
