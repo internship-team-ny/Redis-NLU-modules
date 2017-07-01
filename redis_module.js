@@ -30,10 +30,10 @@ module.exports = {
   },
        
   //retrieve tweets for a given ID in a list
-  retrieveTweets: function(id) {
+  retrieveTweets: function(id, callback) {
     var listTitle = id + ' tweets';
     client.lrange(listTitle,0,-1, function(err, reply){
-      return reply;
+      callback(reply);
     });
   },
 
@@ -51,7 +51,7 @@ module.exports = {
   retrieveAnalysis: function(id) {
     var listTitle = id + ' analysis';
     client.lrange(listTitle,0,-1, function(err, reply){
-      return reply;
+      callback(reply);
     });
   },
 
