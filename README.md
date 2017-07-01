@@ -6,7 +6,7 @@ NLU module: performs analysis for given text
 (Currently working on expanding the modules with more functionalities)
 
 
-**REDIS Module**:
+***** **REDIS Module** *****:
 
 (All functions should be passed the request id as the first parameter).
 
@@ -31,7 +31,7 @@ redis.retrieveTweets('id',function(reply){
   var retrievedTweets = reply;
 });
 
-**NLU Module**:
+***** **NLU Module** *****:
 
 (analyze) takes two parameters: the text to be analyzed and a callback function to receive the analysis.
 
