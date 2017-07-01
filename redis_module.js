@@ -48,7 +48,7 @@ module.exports = {
       this.storeAnalysis(id, analysis[i]);
   },
        
-  retrieveAnalysis: function(id) {
+  retrieveAnalysis: function(id, callback) {
     var listTitle = id + ' analysis';
     client.lrange(listTitle,0,-1, function(err, reply){
       callback(reply);
