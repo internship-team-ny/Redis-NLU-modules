@@ -32,8 +32,11 @@ module.exports = {
   //retrieve tweets for a given ID in a list
   retrieveTweets: function(id, callback) {
     var listTitle = id + ' tweets';
+    var retrieved = [];
     client.lrange(listTitle,0,-1, function(err, reply){
-      callback(reply);
+      for(i in reply)
+        retrieved.push(JSON.parse(reply[i]));
+      callback(retrieved);
     });
   },
 
@@ -50,8 +53,11 @@ module.exports = {
        
   retrieveAnalysis: function(id, callback) {
     var listTitle = id + ' analysis';
+    var retrieved = [];
     client.lrange(listTitle,0,-1, function(err, reply){
-      callback(reply);
+      for(i in reply)
+        retrieved.push(JSON.parse(reply[i]));
+      callback(retrieved);
     });
   },
 
