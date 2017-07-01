@@ -32,12 +32,14 @@ module.exports = {
   //retrieve tweets for a given ID in a list
   retrieveTweets: function(id) {
     var listTitle = id + ' tweets';
-    return client.lrange(listTitle,0,-1);
+    client.lrange(listTitle,0,-1, function(err, reply){
+      return reply;
+    });
   },
 
   storeAnalysis: function(id, analysis) {
     var listTitle = id + ' analysis';
-    client.rpush(listTitle,JSON.stringify(analysis));  
+    client.rpush(listTitle,JSON.stringify(analysis));
   },
 
   storeMultipleAnalysis: function(id, analysis){
@@ -48,7 +50,9 @@ module.exports = {
        
   retrieveAnalysis: function(id) {
     var listTitle = id + ' analysis';
-    return client.lrange(listTitle,0,-1);
+    client.lrange(listTitle,0,-1, function(err, reply){
+      return reply;
+    });
   },
 
   quit: function(){
