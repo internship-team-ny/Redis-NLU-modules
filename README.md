@@ -23,7 +23,8 @@ NLU module: performs analysis for given text
 
 An example call for storing certain parameters of tweets and then retrieving them:
 
-```var redis = require('redis_module.js');
+```
+var redis = require('redis_module.js');
 var tweets = [TweetOne,TweetTwo];
 var parameters = ['text','id_str','source'];
 redis.storeTweetsDetailed('id', tweets, parameters);
@@ -38,7 +39,8 @@ redis.retrieveTweets('id',function(reply){
 
 An example call for performing analysis on a tweet's text and storing it:
 
-```var nlu = require('NLU_module');
+```
+var nlu = require('NLU_module');
 nlu.analyze(Tweet.text,function(response){
    redis.storeAnalysis('id', response);
 });
@@ -46,8 +48,8 @@ nlu.analyze(Tweet.text,function(response){
   
   ***An example of retrieving the text and id of a user request's tweets, analyzing their texts, and then storing that analysis***:
   
-```var redis = require('redis_module.js');
-
+```
+var redis = require('redis_module.js');
 var nlu = require('NLU_module');
 redis.retrieveTweets('id', function(reply){
   for(i in reply){
