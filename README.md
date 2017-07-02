@@ -16,6 +16,8 @@ NLU module: performs analysis for given text
 
 (storeTweetsDetailed) stores only the given properties of a tweet, i.e. store a tweet's text and source only for example. The desired properties should be passed to the function as a list of strings with the name of the properties, i.e. ['text', 'source']. It thus takes as parameters a list of tweets and a list of properties.
 
+(storeAnalysis) and (storeMultipleAnalysis) store a single analysis or multiple analysis respectively.
+
 (retrieveTweets) and (retrieveAnalysis) functions each return a list of JSON objects each representing a tweet/analysis. They only need to be passed the request id.
 
 (quit) ends the connection to the redis server.
@@ -46,7 +48,7 @@ nlu.analyze(Tweet.text,function(response){
 });
  ``` 
   
-  ***An example of retrieving the text and id of a user request's tweets, analyzing their texts, and then storing that analysis***:
+  ***An example of retrieving a user request's tweets, analyzing their texts, and then storing that analysis***:
   
 ```
 var redis = require('redis_module.js');
