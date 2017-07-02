@@ -42,7 +42,7 @@ there are two (analyze) functions in this module:
 1. (analyze) takes two parameters: the text to be analyzed and a callback function to receive the analysis.
 2. (analyze) takes same two parameters as well as a list of desired analysis features. Possible features are :(categories, concepts, entities, keywords)
 
-An example call for performing analysis on a tweet's text and storing it:
+An example call for performing analysis on a tweet's text with default parameters and storing it:
 
 ```
 var nlu = require('NLU_module');
