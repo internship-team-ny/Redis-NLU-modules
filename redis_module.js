@@ -17,12 +17,13 @@ module.exports = {
       this.storeTweet(id,tweets[i].text);
   },
 
+
   //stores given parameters of tweets
   storeTweetsDetailed: function(id, tweets, parameters) {
     for(var i = 0; i < tweets.length; i++){
       var currentTweet = tweets[i];
       for(property in currentTweet){
-        if ( parameters.indexOf( property.toString() ) == -1 )
+        if ( !parameters.includes( property.toString() ) )
           delete currentTweet[property];  
       }
       this.storeTweet(id, currentTweet);
