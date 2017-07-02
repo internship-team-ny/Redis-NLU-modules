@@ -8,7 +8,7 @@ NLU module: performs analysis for given text
 
 ***** **REDIS Module** *****:
 
-(All functions should be passed the request id as the first parameter).
+(All functions should be passed the request id as the first parameter.)
 
 (storeTweet) stores an entire tweet just as it is passed to it.
 
@@ -18,7 +18,7 @@ NLU module: performs analysis for given text
 
 (storeAnalysis) and (storeMultipleAnalysis) store a single analysis or multiple analysis respectively.
 
-(retrieveTweets) and (retrieveAnalysis) functions each return a list of JSON objects each representing a tweet/analysis. They only need to be passed the request id.
+(retrieveTweets) and (retrieveAnalysis) functions each return a list of JSON objects each representing a tweet/analysis. They  need to be passed a callback function to handle the retrieved data.
 
 (quit) ends the connection to the redis server.
 
