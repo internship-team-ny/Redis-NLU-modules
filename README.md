@@ -53,7 +53,7 @@ var redis = require('redis_module.js');
 var nlu = require('NLU_module');
 redis.retrieveTweets('id', function(reply){
   for(i in reply){
-    nlu.analyze(reply[i].text,function(reply){
+    nlu.analyze(reply[i].text,function(response){
       redis.storeAnalysis('id', response);
     });
   }
