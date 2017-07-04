@@ -12,23 +12,25 @@ module.exports = {
 
 
   //stores tweet's text in a list, takes a list of tweets
-  storeTweets: function(id,tweets){
-    for(var i = 0; i < tweets.length; i++)
-      this.storeTweet(id,tweets[i].text);
+  storeTweets: function(id,tweets,parameters){
+    if(arguments.length == 2) {
+        for (var i = 0; i < tweets.length; i++)
+            this.storeTweet(id, tweets[i].text);
+    }
+
+    //stores given parameters of tweets
+    else{
+        for(var i = 0; i < tweets.length; i++){
+            var currentTweet = tweets[i];
+            for(property in currentTweet){
+                if ( !parameters.includes( property.toString() ) )
+                    delete currentTweet[property];
+            }
+            this.storeTweet(id, currentTweet);
+        }
+    }
   },
 
-
-  //stores given parameters of tweets
-  storeTweetsDetailed: function(id, tweets, parameters) {
-    for(var i = 0; i < tweets.length; i++){
-      var currentTweet = tweets[i];
-      for(property in currentTweet){
-        if ( !parameters.includes( property.toString() ) )
-          delete currentTweet[property];  
-      }
-      this.storeTweet(id, currentTweet);
-  }
-  },
        
   //retrieve tweets for a given ID in a list
   retrieveTweets: function(id, callback) {
