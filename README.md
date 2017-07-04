@@ -62,6 +62,8 @@ nlu.analyze(Tweet.text, ['entities','keywords'], function(response){
    redis.storeAnalysis('id', response);
 });
  ``` 
+ 
+ 
   
   ***An example of retrieving a user request's tweets, analyzing their texts, and then storing that analysis***:
   
