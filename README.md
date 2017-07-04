@@ -1,7 +1,7 @@
 # Redis-NLU-modules
 Redis module: stores and retrieves tweets and analysis
 
-NLU module: performs analysis for given text
+NLU module: performs analysis for given text using IBM's NLU service
 
 (Currently working on expanding the modules with more functionalities)
 
@@ -23,14 +23,15 @@ NLU module: performs analysis for given text
 (quit) ends the connection to the redis server.
 
 
-An example call for storing certain parameters of tweets and then retrieving them:
+An example call for storing only the text, ID, and source of tweets and then retrieving them:
 
 ```
 var redis = require('redis_module.js');
+
 var tweets = [TweetOne,TweetTwo];
-var parameters = ['text','id_str','source'];
+var parameters = ['text', 'id_str', 'source'];
 redis.storeTweetsDetailed('id', tweets, parameters);
-redis.retrieveTweets('id',function(reply){
+redis.retrieveTweets('id', function(reply){
      var retrievedTweets = reply;
 });
 ```
@@ -46,7 +47,18 @@ An example call for performing analysis on a tweet's text with default parameter
 
 ```
 var nlu = require('NLU_module');
-nlu.analyze(Tweet.text,function(response){
+
+nlu.analyze(Tweet.text, function(response){
+   redis.storeAnalysis('id', response);
+});
+ ``` 
+ 
+ An example call for  analyzing a tweet's text entities and keywords only and storing the analysis:
+
+```
+var nlu = require('NLU_module');
+
+nlu.analyze(Tweet.text, ['entities','keywords'], function(response){
    redis.storeAnalysis('id', response);
 });
  ``` 
@@ -56,9 +68,10 @@ nlu.analyze(Tweet.text,function(response){
 ```
 var redis = require('redis_module.js');
 var nlu = require('NLU_module');
+
 redis.retrieveTweets('id', function(reply){
   for(i in reply){
-    nlu.analyze(reply[i].text,function(response){
+    nlu.analyze(reply[i].text, function(response){
       redis.storeAnalysis('id', response);
     });
   }
