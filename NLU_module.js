@@ -1,8 +1,8 @@
 //setting up NLU, no need to hide credentials as this code is only accessed locally
 var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
 var natural_language_understanding = new NaturalLanguageUnderstandingV1({
-  'username': '0025daef-697a-405f-b544-62b39830f9a8',
-  'password': 'KP6iG4kZmKti',
+  'username': 'c1b1a5cc-a738-405c-bd27-24b3211d0cab',
+  'password': 'ZoCp1BxpMWeh',
   'version_date': '2017-02-27'
 });
 
@@ -21,12 +21,12 @@ var natural_language_understanding = new NaturalLanguageUnderstandingV1({
       'entities':{
         'emotion': true,
         'sentiment': true,
-        'limit': 10
+        'limit': 5
       },
       'keywords':{
         'emotion':true,
         'sentiment':true,
-        'limit':10
+        'limit': 5
       }
     }
   }
@@ -56,13 +56,13 @@ analyze: function(text, features, callback){
       parameters.features.entities = {
         'emotion': true,
         'sentiment': true,
-        'limit': 10
+        'limit': 5
       };
    if(features.includes('keywords'))
       parameters.features.keywords = {
         'emotion':true,
         'sentiment':true,
-        'limit':10
+        'limit': 5
       };
 
   natural_language_understanding.analyze(parameters, function(err, response) {
