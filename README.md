@@ -38,10 +38,10 @@ redis.retrieveTweets('id', function(reply){
 
 ***** **NLU Module** *****:
 
-there are two (analyze) functions in this module:
+(analyze) is the only function in this module:
 
-1. (analyze) takes two parameters: the text to be analyzed and a callback function to receive the analysis.
-2. (analyze) takes same two parameters as well as a list of desired analysis features. Possible features are :(categories, concepts, entities, keywords)
+1. (analyze) can take two parameters: the text to be analyzed and a callback function to receive the analysis.
+2. (analyze) can take three parameters:  the text to be analyzed, desired analysis features, and a callback function to receive the analysis. Possible features are:(categories, concepts, entities, keywords)
 
 An example call for performing analysis on a tweet's text with default parameters and storing it:
 
