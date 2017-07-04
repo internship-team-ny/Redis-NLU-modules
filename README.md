@@ -12,7 +12,7 @@ NLU module: performs analysis for given text using IBM's NLU service
 
 (storeTweet) stores an entire tweet just as it is passed to it.
 
-(storeTweets) stores a list of tweets
+(storeTweets) stores a list of tweets.
 
 (storeTweetsDetailed) stores only the given properties of a tweet, i.e. store a tweet's text and source only for example. The desired properties should be passed to the function as a list of strings with the name of the properties, e.g. ['text', 'source']. It thus takes as parameters a list of tweets and a list of properties.
 
